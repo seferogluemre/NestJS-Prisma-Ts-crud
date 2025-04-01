@@ -20,4 +20,30 @@ model Product {
   price        Float
   sale         Boolean      @default(false)
   availibility Availibility
+  description  Description?
+  reviews      Reviews[]
+  tags         Tag[]
+}
+
+model Description {
+  id           Int     @id @default(autoincrement())
+  content      String
+  productField Product @relation(fields: [productId], references: [id])
+  productId    Int     @unique
+}
+
+model Reviews {
+  id      Int    @id @default(autoincrement())
+  title   String
+  content String
+  rating  Int
+
+  productField Product @relation(fields: [productId], references: [id])
+  productId    Int     @unique
+}
+
+model Tag {
+  id       Int       @id @default(autoincrement())
+  content  String
+  products Product[]
 }
