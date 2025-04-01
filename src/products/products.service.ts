@@ -20,6 +20,17 @@ export class ProductsService {
     return this.databaseService.product.findUnique({
       where: {
         id: id
+      },
+      select: {
+        id: true,
+        name: true,
+        description: true,
+        price: true,
+        availibility: true,
+        createdAt: true,
+        sale: true,
+        reviews: true,
+        tags: true
       }
     })
   }
